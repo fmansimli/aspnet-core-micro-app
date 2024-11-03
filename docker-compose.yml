@@ -1,0 +1,6 @@
+﻿services:
+  aspnet-micro-app:
+    image: aspnet-micro-app
+    build:
+      context: .
+      dockerfile: Dockerfile
