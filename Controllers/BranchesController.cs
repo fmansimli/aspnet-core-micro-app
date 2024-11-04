@@ -7,10 +7,19 @@ namespace AspNet_micro_app.Controllers
     [ApiController]
     public class BranchesController : ControllerBase
     {
+        private readonly ILogger<BranchesController> _logger;
+
+        public BranchesController(ILogger<BranchesController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpGet]
         public IActionResult GetBranches()
         {
-            return Ok(new { branches = new string[] { "branch 1", "branch 2" } });
+            var branches = new[] { "branch1", "branch2", "branch3" };
+            _logger.LogInformation($"Branches: {string.Join(", ", branches)}");
+            return Ok(new { branches });
         }
 
         [HttpGet("{id}")]
